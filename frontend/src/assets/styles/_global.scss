@@ -1,0 +1,11 @@
+@use 'variables';
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: variables.$container-width;
+  margin: 0 auto;
+}
