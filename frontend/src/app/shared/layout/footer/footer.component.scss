@@ -1,0 +1,123 @@
+@use '../../../../assets/styles/variables';
+
+footer.footer {
+  padding: 40px 0 54px 0;
+  background-color: #B9D5FD;
+
+  .container {
+    .footer-menu {
+      display: flex;
+      align-items: center;
+
+      .logo {
+        margin-right: 20px;
+      }
+
+      nav ul {
+        margin: 0;
+        padding: 0;
+
+        display: flex;
+        align-items: center;
+
+        li {
+
+          margin-left: 20px;
+          list-style: none;
+
+          a {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            color: variables.$base-text-color;
+            cursor: pointer;
+            text-decoration: none;
+
+            &.active {
+              color: variables.$second-text-color;
+            }
+
+          }
+        }
+      }
+    }
+
+    .footer-contacts {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+      margin-bottom: 6px;
+
+      .footer-contact-block {
+        &.one {
+          width: 253px;
+        }
+
+        &.two {
+          width: 153px;
+        }
+
+        &.three {
+          width: 127px;
+        }
+
+        &.four {
+          width: 203px;
+        }
+
+        .footer-contact-block-head {
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 500;
+          font-size: 16px;
+          color: variables.$second-text-color;
+          margin-bottom: 10px;
+        }
+
+        .footer-contact-block-description {
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 400;
+          font-size: 16px;
+          color: variables.$base-text-color;
+        }
+
+        .footer-contact-block-phone {
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 400;
+          font-size: 16px;
+          color: variables.$base-text-color;
+          cursor: pointer;
+          text-decoration: none;
+        }
+
+        .footer-contact-block-button {
+          margin-top: 10px;
+          padding: 10px 20px
+        }
+
+        .footer-contact-block-email {
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 400;
+          font-size: 14px;
+          color: variables.$base-text-color;
+          cursor: pointer;
+          text-decoration: none;
+        }
+
+        .footer-contact-block-icons {
+          margin-top: 5px;
+
+          a {
+            margin-right: 12px;
+          }
+        }
+      }
+    }
+
+    .copyright {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      color: variables.$second-text-color;
+    }
+  }
+}

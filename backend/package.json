@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "cyrillic-to-translit-js": "^3.2.1",
-    "migrate-mongo": "^9.0.0",
+    "migrate-mongo": "^14.0.7",
     "nodemon": "^2.0.19"
   }
 }

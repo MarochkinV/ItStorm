@@ -9,3 +9,67 @@ html, body {
   max-width: variables.$container-width;
   margin: 0 auto;
 }
+
+.input {
+  padding: 17px 20px;
+  background: #FFFFFF;
+  border: 2px solid #709FDC;
+  border-radius: 3px;
+  width: 422px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: variables.$base-text-color;
+  margin-bottom: 5px;
+  box-sizing: border-box;
+
+  &:last-child {
+    margin-bottom: 10px;
+  }
+
+  &::placeholder {
+    color:#A8ABA7 ;
+    font-size: 14px;
+  }
+}
+
+.button {
+  text-align: center;
+  background: variables.$second-text-color;
+  border-radius: 5px;
+  box-sizing: border-box;
+  cursor: pointer;
+  border: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  color: #FFFFFF;
+
+  &:hover {
+    background: #5e91cf;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+    background: #cccccc;
+
+    &:hover {
+      background: #cccccc;
+    }
+  }
+}
+
+.mat-menu-item {
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  color: variables.$base-text-color;
+
+  //a {
+  //  text-decoration: none;
+  //  color: $grey-text-color;
+  //}
+}

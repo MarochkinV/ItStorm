@@ -1,3 +1,9 @@
 @use "variables";
 @use "fonts";
 @use "global";
+
+html, body { height: 100%; }
+
+.mat-typography p {
+  margin-bottom: 0;
+}
