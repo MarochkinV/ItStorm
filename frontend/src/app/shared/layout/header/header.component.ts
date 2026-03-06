@@ -3,6 +3,7 @@ import {AuthService} from "../../../core/auth/auth.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-header',
@@ -12,18 +13,41 @@ import {Router} from "@angular/router";
 export class HeaderComponent implements OnInit {
 
   isLogged: boolean = false;
+  userName: string = '';
 
   constructor(private authService: AuthService,
               private snackBar: MatSnackBar,
+              private userService: UserService,
               private router: Router,) {
 
     this.isLogged = this.authService.getIsLoggedIn();
   }
 
   ngOnInit(): void {
+
     this.authService.isLogged$.subscribe(isLoggedIn => {
       this.isLogged = isLoggedIn;
+
+      if (isLoggedIn) {
+        this.getUserInfo();
+      }
     });
+
+    if (this.isLogged) {
+      this.getUserInfo();
+    }
+  }
+
+  getUserInfo(): void {
+    this.userService.getUserInfo()
+      .subscribe({
+        next: (data) => {
+          this.userName = data.name;
+        },
+        error: () => {
+          this.snackBar.open('Ошибка получения данных пользователя');
+        }
+      });
   }
 
   logout(): void {
