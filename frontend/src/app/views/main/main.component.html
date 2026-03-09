@@ -1,1 +1,27 @@
-<p>main works!</p>
+<section class="main">
+  <div class="container">
+    <div class="carousel-items">
+      <owl-carousel-o [options]="customOptions" #owlCar>
+        <ng-template carouselSlide>
+          <div class="banner-one">
+            <img src="/assets/images/page/banner-1.png" alt="banner">
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="banner-one">
+            <img src="/assets/images/page/banner-2.png" alt="banner">
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="banner-one">
+            <img src="/assets/images/page/banner-3.png" alt="banner">
+          </div>
+        </ng-template>
+      </owl-carousel-o>
+      <p>
+        <a class="btn btn-success" (click)="owlCar.prev()"><=</a>
+        <a class="btn btn-success" (click)="owlCar.next()">=></a>
+      </p>
+    </div>
+  </div>
+</section>
