@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LayoutComponent} from './shared/layout/layout.component';
@@ -8,12 +7,15 @@ import {HeaderComponent} from './shared/layout/header/header.component';
 import {FooterComponent} from './shared/layout/footer/footer.component';
 import {MainComponent} from './views/main/main.component';
 import {NgOptimizedImage} from "@angular/common";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatMenuModule} from "@angular/material/menu";
 import {RouterModule} from "@angular/router";
 import {CarouselModule} from "ngx-owl-carousel-o";
+import {AuthInterceptor} from "./core/interceptors/auth.interceptor";
+import {SharedModule} from "./shared/shared.module";
+import {ScrollService} from "./shared/services/scroll.service";
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import {CarouselModule} from "ngx-owl-carousel-o";
     MatSnackBarModule,
     HttpClientModule,
     CarouselModule,
+    SharedModule,
     RouterModule,
     NgOptimizedImage,
     MatMenuModule,
@@ -35,8 +38,14 @@ import {CarouselModule} from "ngx-owl-carousel-o";
     BrowserAnimationsModule
   ],
   providers: [
+    ScrollService,
     {
       provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 3000}
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
     }
   ],
   bootstrap: [AppComponent]

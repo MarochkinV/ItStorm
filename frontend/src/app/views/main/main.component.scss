@@ -1,4 +1,5 @@
 @use '../../../assets/styles/variables';
+@use '../../../assets/styles/mixins';
 
 .main {
   padding-bottom: 120px;
@@ -99,10 +100,7 @@
 
   .container {
     .services-title {
-      font-family: 'Lora', sans-serif;
-      line-height: 130%;
-      font-weight: 400;
-      font-size: 38px;
+      @include mixins.head-lora-38;
       color: variables.$second-text-color;
       margin-bottom: 40px;
     }
@@ -164,10 +162,7 @@
 
       .about_us-description {
         .about_us-description-title {
-          font-family: 'Lora', sans-serif;
-          font-weight: 400;
-          line-height: 130%;
-          font-size: 38px;
+          @include mixins.head-lora-38;
           color: variables.$second-text-color;
           margin-bottom: 20px;
         }
@@ -188,7 +183,7 @@
         .about_us-description-subtitle {
           font-family: 'Lora', sans-serif;
           font-style: normal;
-          line-height: 130%;
+          //line-height: 130%;
           font-weight: 400;
           font-size: 26px;
           color: variables.$second-text-color;
@@ -234,18 +229,20 @@
 
   .container {
     .popular-articles-title {
-      font-family: 'Lora', sans-serif;
-      font-style: normal;
-      font-weight: 400;
-      font-size: 38px;
-      line-height: 130%;
-      color: variables.$second-text-color;
+      @include mixins.head-lora-38;
       margin-bottom: 40px;
+    }
+
+    .popular-articles-items {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .popular-articles-link {
       display: flex;
       justify-content: flex-end;
+      margin-top: 40px;
 
       a {
         font-family: 'Montserrat', sans-serif;
@@ -268,15 +265,12 @@
   }
 }
 
-.reviews{
+.reviews {
   padding-bottom: 120px;
+
   .container {
-    .reviews-title{
-      font-family: 'Lora', sans-serif;
-      font-style: normal;
-      font-weight: 400;
-      font-size: 38px;
-      line-height: 130%;
+    .reviews-title {
+      @include mixins.head-lora-38;
       color: variables.$second-text-color;
       margin-bottom: 20px;
     }
@@ -331,19 +325,79 @@
         display: flex;
 
         a {
-          top: calc(50% - 5px);
+          top: calc(50%);
           display: flex;
           position: absolute;
           cursor: pointer;
 
           &.move-backward {
-            left: -41px;
+            left: -25px;
           }
 
           &.move-forward {
-            right: -41px;
+            right: -25px;
           }
         }
+      }
+    }
+  }
+}
+
+.contacts {
+  padding-bottom: 120px;
+
+  .container {
+    display: flex;
+  }
+
+  .contacts-info {
+    margin-left: 26px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 130%;
+    color: variables.$base-text-color;
+
+    .contacts-info-title {
+      @include mixins.head-lora-38;
+      margin-bottom: 20px;
+    }
+
+    .contacts-info-subtitle {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      font-size: 20px;
+      color: variables.$second-text-color;
+      margin-bottom: 20px;
+    }
+
+    .contacts-info-text {
+      margin-bottom: 20px;
+      width: 500px;
+    }
+
+    .contacts-info-link {
+      margin-bottom: 20px;
+      text-decoration: none;
+      cursor: pointer;
+
+      a {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 130%;
+        color: variables.$base-text-color;
+      }
+    }
+
+    .contacts-info-icons_social {
+      display: flex;
+      align-items: center;
+
+      a {
+        margin-right: 20px;
+        text-decoration: none;
+        cursor: pointer;
       }
     }
   }

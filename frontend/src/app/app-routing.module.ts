@@ -11,14 +11,20 @@ const routes: Routes = [
     children: [
       {path: '', component: MainComponent},
       {path: '', loadChildren:()=> import('./views/user/user.module').then(m => m.UserModule)},
+      {path: '', loadChildren:()=> import('./views/article/article.module').then(m => m.ArticleModule)},
     ]
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      anchorScrolling: 'enabled',
+      scrollPositionRestoration: 'enabled',
+      onSameUrlNavigation: 'reload',
+    })
+  ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule { }
 

@@ -1,0 +1,117 @@
+@use '../../../../assets/styles/variables';
+
+.article-card {
+  position: relative;
+  height: 571px;
+  width: 292px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+
+  .article-card-category {
+    position: absolute;
+    top: 10px;
+    right: 9px;
+    z-index: 5;
+
+    padding: 10px 18px;
+    background: #FFFFFF;
+    border-radius: 5px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 130%;
+    text-align: center;
+    color: variables.$second-text-color;
+  }
+
+  .article-card-image {
+    width: 291px;
+    height: 291px;
+    border-radius: 5px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .article-card-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 130%;
+    color: variables.$second-text-color;
+    margin-top: 15px;
+  }
+
+  .description-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    margin-top: 20px;
+
+    .article-card-description {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 130%;
+      color: variables.$base-text-color;
+      margin-top: 0;
+
+      &.clickable {
+        cursor: pointer;
+      }
+
+      &.expanded {
+        cursor: default;
+      }
+
+      .description-ellipsis {
+        cursor: pointer;
+        color: variables.$second-text-color;
+        font-weight: 500;
+        margin-left: 2px;
+        font-size: 16px;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .article-card-description-toggle {
+      align-self: flex-end;
+      margin-top: 5px;
+
+      color: variables.$second-text-color;
+      cursor: pointer;
+      font-size: 14px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+
+  .article-card-link {
+    margin-top: 10px;
+
+    a {
+      font-family: 'Montserrat', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 130%;
+      text-decoration-line: underline;
+      color: variables.$second-text-color;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+

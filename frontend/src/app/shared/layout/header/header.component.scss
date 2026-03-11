@@ -26,7 +26,6 @@ header.header {
             list-style: none;
 
 
-
             a {
               font-family: 'Montserrat', sans-serif;
               font-weight: 500;
@@ -36,7 +35,7 @@ header.header {
               text-decoration: none;
 
               &.active {
-                color: variables.$second-text-color ;
+                color: variables.$second-text-color;
               }
             }
 
@@ -56,7 +55,6 @@ header.header {
         text-decoration: none;
         margin-left: 257px;
       }
-
     }
 
     .header-content-action {

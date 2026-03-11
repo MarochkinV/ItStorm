@@ -1,7 +1,13 @@
 @use "variables";
 @use "fonts";
+@use "mixins";
 @use "global";
 
+
+
+* {
+  scroll-behavior: smooth !important;
+}
 
 html, body { height: 100%; }
 
