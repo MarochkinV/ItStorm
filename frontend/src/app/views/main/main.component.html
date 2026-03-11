@@ -168,7 +168,9 @@
 <section class="popular-articles">
   <div class="container">
     <div class="popular-articles-title">Популярные статьи из блога</div>
-    <div class="popular-articles-items"></div>
+    <div class="popular-articles-items">
+      <article-card [article]="article" *ngFor="let article of articles"></article-card>
+    </div>
     <div class="popular-articles-link">
       <a href="#">Перейти в блог
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">

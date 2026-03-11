@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {OwlOptions} from "ngx-owl-carousel-o";
+import {ArticleService} from "../../shared/services/article.service";
+import {ArticleType} from "../../../types/article.type";
 
 @Component({
   selector: 'app-main',
@@ -48,9 +50,16 @@ export class MainComponent implements OnInit {
     nav: false,
   };
 
-  constructor() { }
+  articles: ArticleType[] = [];
+
+  constructor(private articleServices: ArticleService) {
+  }
 
   ngOnInit(): void {
+    this.articleServices.getPopArticle()
+      .subscribe((data: ArticleType[]) => {
+        this.articles = data;
+      })
   }
 
 }
