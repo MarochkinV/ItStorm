@@ -1,0 +1,89 @@
+<div class="blog">
+  <div class="container">
+    <div class="blog-title">Блог</div>
+
+    <div class="blog-head">
+      <div class="blog-applied-filters">
+        <div class="blog-applied-filter" *ngFor="let category of selectedCategories">
+          <span>{{ category.name }}</span>
+          <a (click)="removeCategory(category)">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_321_627)">
+                <line x1="1.93553" y1="2.65002" x2="13.9563" y2="14.6708" stroke="#709FDC" stroke-linecap="round"/>
+                <line x1="13.9236" y1="2.62984" x2="1.90278" y2="14.6507" stroke="#709FDC" stroke-linecap="round"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_321_627">
+                  <rect width="16" height="16" fill="white"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="blog-sorting" [class.open]="isSortingOpen">
+        <div class="blog-sorting-head" (click)="toggleSorting()">
+          <span>Фильтр</span>
+          <svg class="sorting-arrow"
+               [class.rotated]="isSortingOpen" width="20" height="20" viewBox="0 0 20 20" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M10 14C9.41668 14 8.83335 13.775 8.39168 13.3334L2.95835 7.90003C2.71668 7.65837 2.71668 7.25837 2.95835 7.0167C3.20002 6.77503 3.60002 6.77503 3.84168 7.0167L9.27502 12.45C9.67502 12.85 10.325 12.85 10.725 12.45L16.1583 7.0167C16.4 6.77503 16.8 6.77503 17.0417 7.0167C17.2833 7.25837 17.2833 7.65837 17.0417 7.90003L11.6083 13.3334C11.1667 13.775 10.5833 14 10 14Z"
+              fill="#071739"/>
+          </svg>
+        </div>
+        <div class="blog-sorting-body">
+          <div class="blog-sorting-item"
+               *ngFor="let category of categories"
+               (click)="toggleCategory(category)"
+               [class.active]="isCategorySelected(category)">
+            <span>{{ category.name }}</span>
+
+            <svg *ngIf="!isCategorySelected(category)" width="11" height="11" viewBox="0 0 11 11" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M10.4399 4.39198H5.97595V-2.47955e-05H4.46395V4.39198H-5.37038e-05V5.80798H4.46395V10.176H5.97595V5.80798H10.4399V4.39198Z"
+                fill="#BEBEBE"/>
+            </svg>
+
+            <svg *ngIf="isCategorySelected(category)" width="7" height="2" viewBox="0 0 7 2" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path d="M5.8651e-05 1.48799H6.28806V-1.45435e-05H5.8651e-05V1.48799Z" fill="#071739"/>
+            </svg>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="blog-items">
+      <article-card *ngFor=" let article of articles" [article]="article"></article-card>
+    </div>
+
+
+    <div class="pagination">
+      <div class="pagination-arrow"
+           [class.disabled]="currentPage === 1"
+           (click)="previousPage()">
+        <svg width="11" height="19" viewBox="0 0 11 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10.076 0.75L1.07602 9.25L10.076 18.25" stroke="#B9D5FD" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <div class="pagination-pages">
+        <a class="pagination-page"
+           [class.active]="page === currentPage"
+           (click)="goToPage(page)"
+           *ngFor="let page of pages">{{ page }}</a>
+      </div>
+
+      <div class="pagination-arrow"
+           [class.disabled]="currentPage === totalPages"
+           (click)="nextPage()">
+        <svg width="11" height="19" viewBox="0 0 11 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0.75 18.25L9.75 9.75L0.75 0.75" stroke="#B9D5FD" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
