@@ -1,0 +1,65 @@
+@use '../../../../assets/styles/variables';
+@use '../../../../assets/styles/mixins';
+
+.policy {
+  padding: 80px 0 120px 0;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+
+    .breadcrumbs {
+      margin-bottom: 60px;
+
+      a {
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        color: #B9D5FD;
+        text-decoration: none;
+        margin-right: 8px;
+
+        &:hover {
+          color: variables.$second-text-color;
+        }
+      }
+
+
+      span {
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        color: variables.$second-text-color;
+      }
+    }
+
+    .policy-text {
+      max-width: 800px;
+      margin: 0 auto;
+      p {
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        text-align: justify;
+        hyphens: auto;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 130%;
+        color: variables.$base-text-color;
+      }
+
+      h3 {
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 130%;
+        color: variables.$second-text-color;
+        margin-top: 20px;
+      }
+    }
+
+
+  }
+}

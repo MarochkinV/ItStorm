@@ -1,0 +1,156 @@
+@use '../../../../assets/styles/variables';
+@use '../../../../assets/styles/mixins';
+
+.reading {
+  padding: 80px 0 120px 0;
+
+  .container {
+    .breadcrumbs {
+      margin-bottom: 60px;
+
+      a {
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        color: #B9D5FD;
+        text-decoration: none;
+        margin-right: 8px;
+
+        &:hover {
+          color: variables.$second-text-color;
+        }
+      }
+
+
+
+      span {
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        color: variables.$second-text-color;
+      }
+    }
+
+    .reading-head {
+      margin-bottom: 60px;
+      display: flex;
+      justify-content: space-between;
+
+      .reading-head-subscribe {
+        width: 607px;
+
+        .reading-head-subscribe-title {
+          @include mixins.head-lora-38;
+          color: variables.$second-text-color;
+          margin-bottom: 40px;
+        }
+
+        .reading-head-subscribe-text {
+          font-family: 'Montserrat', sans-serif;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 20px;
+          line-height: 130%;
+          color: variables.$second-text-color;
+        }
+      }
+
+      .reading-head-image {
+        width: 527px;
+        height: 320px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 5px;
+      }
+    }
+
+    .reading-content {
+      margin-bottom: 60px;
+      display: flex;
+      justify-content: space-between;
+
+      .reading-content-article {
+        width: 818px;
+
+        p {
+          font-family: 'Montserrat', sans-serif;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 130%;
+          color: variables.$base-text-color;
+          margin-bottom: 20px;
+        }
+
+        h3 {
+          font-family: 'Montserrat', sans-serif;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 20px;
+          line-height: 130%;
+          color: variables.$second-text-color;
+          margin: 20px 0;
+        }
+
+      }
+
+      .reading-content-related {
+        .related-title {
+          font-family: 'Lora', sans-serif;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 26px;
+          line-height: 130%;
+          color: variables.$second-text-color;
+          margin: 60px 0 20px 0;
+        }
+
+        .related-items {
+          display: flex;
+          flex-wrap: wrap;
+          flex-direction: column;
+          row-gap: 60px;
+        }
+      }
+    }
+
+    .reading-social {
+      display: flex;
+      align-items: center;
+      margin-bottom: 60px;
+
+      span {
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 130%;
+        color: variables.$second-text-color;
+        margin-right: 20px;
+      }
+
+      a {
+        margin-right: 13px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+
+        }
+      }
+
+    }
+
+    .reading-comment {
+      .reading-comment-title {
+        @include mixins.head-lora-38;
+        color: variables.$second-text-color;
+        margin-bottom: 20px;
+      }
+    }
+  }
+}

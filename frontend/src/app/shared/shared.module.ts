@@ -4,11 +4,13 @@ import {RouterModule} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { ArticleCardComponent } from './components/article-card/article-card.component';
+import { UiModalComponent } from './components/ui-modal/ui-modal.component';
 
 
 @NgModule({
   declarations: [
-    ArticleCardComponent
+    ArticleCardComponent,
+    UiModalComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { ArticleCardComponent } from './components/article-card/article-card.com
     FormsModule,
   ],
   exports: [
-    ArticleCardComponent
+    ArticleCardComponent,
+    UiModalComponent
   ]
 })
 export class SharedModule {

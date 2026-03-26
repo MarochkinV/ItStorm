@@ -16,6 +16,8 @@ import {CarouselModule} from "ngx-owl-carousel-o";
 import {AuthInterceptor} from "./core/interceptors/auth.interceptor";
 import {SharedModule} from "./shared/shared.module";
 import {ScrollService} from "./shared/services/scroll.service";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import {ScrollService} from "./shared/services/scroll.service";
     NgOptimizedImage,
     MatMenuModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     ScrollService,

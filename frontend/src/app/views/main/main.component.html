@@ -63,7 +63,9 @@
         </div>
         <div class="services-card-action">
           <div class="services-card-action-price">От 7 500₽</div>
-          <button class="button button-more_details">Подробнее</button>
+          <button type="button" class="button button-more_details"
+                  (click)="openModal($event, 'Создание сайтов')">Подробнее
+          </button>
         </div>
       </div>
       <div class="services-card">
@@ -74,7 +76,9 @@
         </div>
         <div class="services-card-action">
           <div class="services-card-action-price">От 3 500₽</div>
-          <button class="button button-more_details">Подробнее</button>
+          <button type="button" class="button button-more_details"
+                  (click)="openModal($event, 'Продвижение')">Подробнее
+          </button>
         </div>
       </div>
       <div class="services-card">
@@ -85,7 +89,9 @@
         </div>
         <div class="services-card-action">
           <div class="services-card-action-price">От 1 000₽</div>
-          <button class="button button-more_details">Подробнее</button>
+          <button type="button" class="button button-more_details"
+                  (click)="openModal($event, 'Реклама')">Подробнее
+          </button>
         </div>
       </div>
       <div class="services-card">
@@ -96,7 +102,9 @@
         </div>
         <div class="services-card-action">
           <div class="services-card-action-price">От 750₽</div>
-          <button class="button button-more_details">Подробнее</button>
+          <button type="button" class="button button-more_details"
+                  (click)="openModal($event, 'Копирайтинг')">Подробнее
+          </button>
         </div>
       </div>
     </div>
@@ -335,3 +343,36 @@
     </div>
   </div>
 </section>
+
+
+<app-ui-modal #orderModal (onClosed)="requestForm.reset()">
+  <h1>Заявка на услугу</h1>
+  <form [formGroup]="requestForm" (ngSubmit)="sendRequest()">
+    <div class="auth-inputs">
+      <div class="auth-input">
+        <input type="text" class="input input-service" placeholder="Название услуги" formControlName="service">
+      </div>
+    </div>
+    <div class="auth-input">
+      <input type="text"
+             [ngStyle]="{'border-color': requestForm.get('name')?.invalid
+                 && (requestForm.get('name')?.dirty || requestForm.get('name')?.touched) ? 'red' : '' }"
+             class="input" placeholder="Ваше имя" formControlName="name">
+    </div>
+    <div class="auth-input">
+      <input type="tel"
+             [ngStyle]="{'border-color': requestForm.get('phone')?.invalid
+                 && (requestForm.get('phone')?.dirty || requestForm.get('phone')?.touched) ? 'red' : '' }"
+             class="input" placeholder="Ваш номер телефона" formControlName="phone">
+    </div>
+    <button class="button request-button" type="submit" [disabled]="requestForm.invalid">
+      Оставить заявку
+    </button>
+  </form>
+</app-ui-modal>
+
+<app-ui-modal #successModal>
+  <h1>Спасибо за вашу заявку!</h1>
+  <p>Мы свяжемся с вами при первой же возможности.</p>
+  <button class="button success-button" (click)="successModal.close()">Окей</button>
+</app-ui-modal>

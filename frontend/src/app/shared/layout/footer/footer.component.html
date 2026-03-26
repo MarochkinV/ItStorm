@@ -34,7 +34,9 @@
       <div class="footer-contact-block two">
         <div class="footer-contact-block-head">Телефон</div>
         <a class="footer-contact-block-phone" href="tel:+74993431334">+7 (499) 343-13-34</a>
-        <button class="button footer-contact-block-button">Перезвоните мне</button>
+        <button class="button footer-contact-block-button" (click)="openModal($event, 'Бесплатная консультация')">
+          Перезвоните мне
+        </button>
       </div>
       <div class="footer-contact-block three">
         <div class="footer-contact-block-head">E-mail</div>
@@ -72,3 +74,30 @@
 
   </div>
 </footer>
+
+<app-ui-modal #orderModal (onClosed)="requestForm.reset()">
+  <h1>Заявка на услугу</h1>
+  <form [formGroup]="requestForm" (ngSubmit)="sendRequest()">
+    <div class="auth-input">
+      <input type="text"
+             [ngStyle]="{'border-color': requestForm.get('name')?.invalid
+                 && (requestForm.get('name')?.dirty || requestForm.get('name')?.touched) ? 'red' : '' }"
+             class="input" placeholder="Ваше имя" formControlName="name">
+    </div>
+    <div class="auth-input">
+      <input type="tel"
+             [ngStyle]="{'border-color': requestForm.get('phone')?.invalid
+                 && (requestForm.get('phone')?.dirty || requestForm.get('phone')?.touched) ? 'red' : '' }"
+             class="input" placeholder="Ваш номер телефона" formControlName="phone">
+    </div>
+    <button class="button request-button" type="submit" [disabled]="requestForm.invalid">
+      Оставить заявку
+    </button>
+  </form>
+</app-ui-modal>
+
+<app-ui-modal #successModal>
+  <h1>Спасибо за вашу заявку!</h1>
+  <p>Мы свяжемся с вами при первой же возможности.</p>
+  <button class="button success-button" (click)="successModal.close()">Окей</button>
+</app-ui-modal>

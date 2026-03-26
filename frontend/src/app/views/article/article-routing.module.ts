@@ -5,7 +5,7 @@ import {ReadingComponent} from "./reading/reading.component";
 
 const routes: Routes = [
   {path:'blog', component: BlogComponent},
-  {path:'reading', component: ReadingComponent},
+  {path:'reading/:url', component: ReadingComponent},
 ];
 
 @NgModule({
