@@ -23,7 +23,6 @@
       }
 
 
-
       span {
         font-family: 'Montserrat', sans-serif;
         font-style: normal;
@@ -146,10 +145,179 @@
     }
 
     .reading-comment {
-      .reading-comment-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      color: variables.$base-text-color;
+
+      .comment-title {
         @include mixins.head-lora-38;
         color: variables.$second-text-color;
         margin-bottom: 20px;
+      }
+
+      .comment-login_text {
+        margin-bottom: 60px;
+
+        a {
+          color: variables.$second-text-color;
+          text-decoration: none;
+        }
+      }
+
+      .comment-appeal_text {
+        margin-bottom: 40px;
+      }
+
+      .comment-text_area {
+        margin: 20px 0 60px 0;
+        display: flex;
+        flex-direction: column;
+
+        textarea {
+          background: #FFFFFF;
+          border: 1.5px solid #709FDC;
+          border-radius: 3px;
+          width: 818px;
+          height: 248px;
+          padding: 20px;
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 400;
+          font-size: 14px;
+          color: variables.$base-text-color;
+          resize: none
+        }
+
+        .comment-button {
+          padding: 15px 0;
+          width: 422px;
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 130%;
+          color: #FFFFFF;
+          margin-top: 20px;
+        }
+      }
+
+      .comment-items {
+        margin-bottom: 20px;
+
+        .comment-item {
+          width: 854px;
+          margin-bottom: 40px;
+
+          .comment-item-head {
+            display: flex;
+            margin-bottom: 15px;
+
+            .comment-item-head-icon {
+              margin-right: 26px;
+            }
+
+            .comment-item-head-info {
+              .info-name {
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 600;
+                font-size: 18px;
+                line-height: 130%;
+                color: variables.$second-text-color;
+                margin-bottom: 10px;
+              }
+
+              .info-date {
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 130%;
+                color: #BEBEBE;
+              }
+            }
+          }
+
+          .comment-item-body {
+            margin-bottom: 39px;
+
+            .comment-item-body-text {
+              font-family: 'Montserrat', sans-serif;
+              font-weight: 400;
+              font-size: 14px;
+              line-height: 140%;
+              color: variables.$base-text-color;
+            }
+          }
+
+          .comment-item-reactions {
+            display: flex;
+            align-items: center;
+
+            span {
+              font-family: 'Montserrat', sans-serif;
+              font-weight: 600;
+              font-size: 14px;
+              line-height: 140%;
+              color: variables.$base-text-color;
+              margin-right: 3px;
+              transition: color 0.3s; // Плавный переход цвета
+
+              // Если у соседней кнопки есть класс .active, красим span
+              &.active {
+                color: variables.$second-text-color !important;
+              }
+            }
+
+            .reaction {
+              margin-right: 15px;
+              padding: 0;
+              border: none;
+              font: inherit;
+              color: inherit;
+              background-color: transparent;
+              cursor: pointer;
+
+              svg path {
+                transition: stroke 0.3s; // Плавная смена цвета линий
+              }
+
+              // Состояние, когда кнопка активна
+              &.active {
+                svg path {
+                  stroke: variables.$second-text-color !important;
+                }
+              }
+
+              // Эффект при наведении (опционально, для красоты)
+              &:hover svg path {
+                stroke: variables.$second-text-color !important;
+              }
+            }
+          }
+
+        }
+      }
+
+      .comments-more {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        margin-top: 60px;
+
+        span {
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 500;
+          font-size: 20px;
+          line-height: 130%;
+          color: variables.$second-text-color;
+          margin-right: 10px;
+        }
+
+        svg {
+          transition: transform 0.3s ease; // Плавность вращения
+
+          &.rotate {
+            transform: rotate(180deg); // Переворачиваем на 180 градусов
+          }
+        }
       }
     }
   }
