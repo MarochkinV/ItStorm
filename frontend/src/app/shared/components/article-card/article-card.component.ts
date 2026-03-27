@@ -20,14 +20,13 @@ export class ArticleCardComponent implements OnInit {
   }
 
   get truncatedDescription(): string {
-    if (!this.article?.description) return '';
-    if (this.isDescriptionExpanded) {
-      return this.article.description;
+    const desc = this.article?.description;
+    if (!desc) return '';
+
+    if (this.isDescriptionExpanded || desc.length <= this.descriptionLimit) {
+      return desc;
     }
-    if (this.article.description.length > this.descriptionLimit) {
-      return this.article.description.substring(0, this.descriptionLimit);
-    }
-    return this.article.description;
+    return desc.substring(0, this.descriptionLimit);
   }
 
   shouldShowToggle(): boolean {

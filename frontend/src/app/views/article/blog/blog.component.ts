@@ -1,10 +1,8 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ElementRef, HostListener} from "@angular/core";
 import {CategoryType} from "../../../../types/category.type";
 import {CategoryService} from "../../../shared/services/category.service";
 import {ArticleService} from "../../../shared/services/article.service";
 import {ArticleType} from "../../../../types/article.type";
-import {HttpErrorResponse} from "@angular/common/http";
-import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-blog',
@@ -24,8 +22,19 @@ export class BlogComponent implements OnInit {
   constructor(
     private articleService: ArticleService,
     private categoryService: CategoryService,
-    private snackBar: MatSnackBar,
-  ) {}
+    private el: ElementRef
+  ) {
+  }
+
+  @HostListener('document:click', ['$event'])
+  onClick(event: MouseEvent) {
+    // Проверяем, нажал ли пользователь на само меню или внутрь него
+    const clickedInside = this.el.nativeElement.querySelector('.blog-sorting').contains(event.target);
+
+    if (!clickedInside && this.isSortingOpen) {
+      this.isSortingOpen = false;
+    }
+  }
 
   ngOnInit(): void {
 

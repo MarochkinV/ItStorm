@@ -5,12 +5,14 @@ import {FormsModule} from "@angular/forms";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { ArticleCardComponent } from './components/article-card/article-card.component';
 import { UiModalComponent } from './components/ui-modal/ui-modal.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 
 @NgModule({
   declarations: [
     ArticleCardComponent,
-    UiModalComponent
+    UiModalComponent,
+    LoaderComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { UiModalComponent } from './components/ui-modal/ui-modal.component';
   ],
   exports: [
     ArticleCardComponent,
-    UiModalComponent
+    UiModalComponent,
+    LoaderComponent
   ]
 })
 export class SharedModule {

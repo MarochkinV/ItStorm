@@ -4,17 +4,22 @@
       <owl-carousel-o [options]="customOptions" #owlCar>
         <ng-template carouselSlide>
           <div class="banner one">
-            <button class="button button-more_details">Подробнее</button>
+            <button class="button button-more_details"
+                    (click)="openModal($event, 'Продвижение')"
+            >Подробнее
+            </button>
           </div>
         </ng-template>
         <ng-template carouselSlide>
           <div class="banner two ">
-            <button class="button button-more_details">Подробнее</button>
+            <button class="button button-more_details"
+                    (click)="openModal($event, 'Копирайтинг')"
+            >Подробнее
+            </button>
           </div>
         </ng-template>
         <ng-template carouselSlide>
           <div class="banner three">
-            <button class="button button-more_details">Подробнее</button>
           </div>
         </ng-template>
       </owl-carousel-o>
@@ -350,20 +355,26 @@
   <form [formGroup]="requestForm" (ngSubmit)="sendRequest()">
     <div class="auth-inputs">
       <div class="auth-input">
-        <input type="text" class="input input-service" placeholder="Название услуги" formControlName="service">
+        <select class="input input-service" formControlName="service">
+          <option value="" disabled>Выберите услугу</option>
+          <option *ngFor="let service of services" [value]="service">
+            {{ service }}
+          </option>
+        </select>
       </div>
-    </div>
-    <div class="auth-input">
-      <input type="text"
-             [ngStyle]="{'border-color': requestForm.get('name')?.invalid
+
+      <div class="auth-input">
+        <input type="text"
+               [ngStyle]="{'border-color': requestForm.get('name')?.invalid
                  && (requestForm.get('name')?.dirty || requestForm.get('name')?.touched) ? 'red' : '' }"
-             class="input" placeholder="Ваше имя" formControlName="name">
-    </div>
-    <div class="auth-input">
-      <input type="tel"
-             [ngStyle]="{'border-color': requestForm.get('phone')?.invalid
+               class="input" placeholder="Ваше имя" formControlName="name">
+      </div>
+      <div class="auth-input">
+        <input type="tel"
+               [ngStyle]="{'border-color': requestForm.get('phone')?.invalid
                  && (requestForm.get('phone')?.dirty || requestForm.get('phone')?.touched) ? 'red' : '' }"
-             class="input" placeholder="Ваш номер телефона" formControlName="phone">
+               class="input" placeholder="Ваш номер телефона" formControlName="phone">
+      </div>
     </div>
     <button class="button request-button" type="submit" [disabled]="requestForm.invalid">
       Оставить заявку

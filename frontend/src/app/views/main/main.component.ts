@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {OwlOptions} from "ngx-owl-carousel-o";
 import {ArticleService} from "../../shared/services/article.service";
 import {ArticleType} from "../../../types/article.type";
@@ -10,13 +10,17 @@ import {UiModalComponent} from "../../shared/components/ui-modal/ui-modal.compon
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+
 })
 export class MainComponent implements OnInit {
   @ViewChild('orderModal') orderModalComponent!: UiModalComponent;
   @ViewChild('successModal') successModalComponent!: UiModalComponent;
+
+  services: string[] = ['Создание сайтов', 'Продвижение', 'Реклама', 'Копирайтинг'];
+
   requestForm = this.fb.group({
-    service: [{value: '', disabled: true}, Validators.required],
+    service: ['', [Validators.required]],
     name: ['', Validators.required],
     phone: ['', [Validators.required, Validators.pattern('^[0-9+]*$')]]
   });
@@ -67,7 +71,7 @@ export class MainComponent implements OnInit {
 
   openModal(event: MouseEvent, serviceTitle: string) {
     event.preventDefault();
-    this.requestForm.patchValue({ service: serviceTitle });
+    this.requestForm.patchValue({service: serviceTitle});
     this.orderModalComponent.open();
   }
 
