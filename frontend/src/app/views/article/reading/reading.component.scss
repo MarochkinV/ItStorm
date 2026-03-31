@@ -258,9 +258,8 @@
               line-height: 140%;
               color: variables.$base-text-color;
               margin-right: 3px;
-              transition: color 0.3s; // Плавный переход цвета
+              transition: color 0.3s;
 
-              // Если у соседней кнопки есть класс .active, красим span
               &.active {
                 color: variables.$second-text-color !important;
               }
@@ -276,23 +275,20 @@
               cursor: pointer;
 
               svg path {
-                transition: stroke 0.3s; // Плавная смена цвета линий
+                transition: stroke 0.3s;
               }
 
-              // Состояние, когда кнопка активна
               &.active {
                 svg path {
                   stroke: variables.$second-text-color !important;
                 }
               }
 
-              // Эффект при наведении (опционально, для красоты)
               &:hover svg path {
                 stroke: variables.$second-text-color !important;
               }
             }
           }
-
         }
       }
 
@@ -312,10 +308,10 @@
         }
 
         svg {
-          transition: transform 0.3s ease; // Плавность вращения
+          transition: transform 0.3s ease;
 
           &.rotate {
-            transform: rotate(180deg); // Переворачиваем на 180 градусов
+            transform: rotate(180deg);
           }
         }
       }

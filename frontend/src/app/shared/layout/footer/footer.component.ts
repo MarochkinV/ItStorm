@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {filter} from "rxjs/operators";
 import {NavigationEnd, Router} from "@angular/router";
 import {Subscription} from "rxjs";
@@ -29,13 +29,13 @@ export class FooterComponent implements OnInit {
               private requestService: RequestService) {
   }
 
-  openModal(event: MouseEvent, serviceTitle: string) {
+  openModal(event: MouseEvent, serviceTitle: string): void {
     event.preventDefault();
-    this.requestForm.patchValue({ service: serviceTitle });
-    this.orderModalComponent.open(); // Вызываем метод из UiModalComponent
+    this.requestForm.patchValue({service: serviceTitle});
+    this.orderModalComponent.open();
   }
 
-  sendRequest() {
+  sendRequest(): void {
     if (this.requestForm.valid) {
       const rawData = this.requestForm.getRawValue();
       const dataToSend = {
@@ -44,17 +44,13 @@ export class FooterComponent implements OnInit {
         service: rawData.service as string,
         type: 'order'
       };
-
       this.requestService.postRequest(dataToSend).subscribe({
-        next: (response) => {
+        next: (response): void => {
           if (!response.error) {
             this.orderModalComponent.close();
             this.successModalComponent.open();
-            setTimeout(() => this.successModalComponent.close(), 7000);
+            setTimeout((): void => this.successModalComponent.close(), 7000);
           }
-        },
-        error: (err) => {
-          console.error('Ошибка бэкенда:', err);
         }
       });
     }
@@ -64,16 +60,15 @@ export class FooterComponent implements OnInit {
     this.subscription.add(
       this.router.events.pipe(
         filter(event => event instanceof NavigationEnd)
-      ).subscribe(() => {
+      ).subscribe((): void => {
         this.updateActiveFragment();
       })
     );
-
     this.updateActiveFragment();
   }
 
   updateActiveFragment(): void {
-    const fragment = this.router.parseUrl(this.router.url).fragment;
+    const fragment: string | null = this.router.parseUrl(this.router.url).fragment;
     this.activeFragment = fragment || '';
   }
 

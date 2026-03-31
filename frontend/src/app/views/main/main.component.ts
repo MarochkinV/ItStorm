@@ -5,6 +5,7 @@ import {ArticleType} from "../../../types/article.type";
 import {FormBuilder, Validators} from "@angular/forms";
 import {RequestService} from "../../shared/services/request.service";
 import {UiModalComponent} from "../../shared/components/ui-modal/ui-modal.component";
+import {DefaultResponseType} from "../../../types/default-response.type";
 
 @Component({
   selector: 'app-main',
@@ -69,13 +70,13 @@ export class MainComponent implements OnInit {
               private requestService: RequestService) {
   }
 
-  openModal(event: MouseEvent, serviceTitle: string) {
+  openModal(event: MouseEvent, serviceTitle: string): void {
     event.preventDefault();
     this.requestForm.patchValue({service: serviceTitle});
     this.orderModalComponent.open();
   }
 
-  sendRequest() {
+  sendRequest(): void {
     if (this.requestForm.valid) {
       const rawData = this.requestForm.getRawValue();
       const dataToSend = {
@@ -86,26 +87,21 @@ export class MainComponent implements OnInit {
       };
 
       this.requestService.postRequest(dataToSend).subscribe({
-        next: (response) => {
+        next: (response: DefaultResponseType): void => {
           if (!response.error) {
             this.orderModalComponent.close();
             this.successModalComponent.open();
-            setTimeout(() => this.successModalComponent.close(), 7000);
+            setTimeout((): void => this.successModalComponent.close(), 7000);
           }
-        },
-        error: (err) => {
-          console.error('Ошибка бэкенда:', err);
         }
       });
     }
   }
 
-
   ngOnInit(): void {
     this.articleServices.getPopArticles()
-      .subscribe((data: ArticleType[]) => {
+      .subscribe((data: ArticleType[]): void => {
         this.articles = data;
       })
   }
-
 }

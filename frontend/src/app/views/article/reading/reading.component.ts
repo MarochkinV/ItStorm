@@ -6,7 +6,7 @@ import {ArticleInsideType,} from "../../../../types/article-inside.type";
 import {environment} from "../../../../environments/environment";
 import {CommentActionType, CommentType} from "../../../../types/comment.type";
 import {CommentService} from "../../../shared/services/comment.service";
-import {Subscription} from "rxjs";
+import {delay, Subscription} from "rxjs";
 import {AuthService} from "../../../core/auth/auth.service";
 import {DefaultResponseType} from "../../../../types/default-response.type";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -42,40 +42,42 @@ export class ReadingComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.authSubscription = this.authService.isLogged$
-      .subscribe((isLogged: boolean) => {
+      .subscribe((isLogged: boolean): void => {
         this.isLogged = isLogged;
       });
 
-    this.activatedRoute.params.subscribe(params => {
-      const url = params['url'];
+    this.activatedRoute.params
+      .subscribe(params => {
+        const url = params['url'];
 
-      this.articleServices.getArticle(url)
-        .subscribe((data: ArticleInsideType) => {
-          this.article = data;
-          this.commentService.getComments(this.article.id)
-            .subscribe((commentData: CommentType) => {
-              this.allCount = commentData.allCount;
+        this.articleServices.getArticle(url)
+          .subscribe((data: ArticleInsideType): void => {
+            this.article = data;
+            this.commentService.getComments(this.article.id)
+              .subscribe((commentData: CommentType): void => {
+                this.allCount = commentData.allCount;
 
-              if (commentData.comments) {
-                this.article.comments = commentData.comments.slice(0, this.initialCommentsCount);
-              }
+                if (commentData.comments) {
+                  this.article.comments = commentData.comments
+                    .slice(0, this.initialCommentsCount);
+                }
 
-              if (this.isLogged) {
-                this.commentService.getArticleCommentActions(this.article.id)
-                  .subscribe((actions: CommentActionType[]) => {
-                    if (actions && actions.length > 0) {
-                      this.userActions = actions;
-                    }
-                  });
-              }
-            });
-        });
+                if (this.isLogged) {
+                  this.commentService.getArticleCommentActions(this.article.id)
+                    .subscribe((actions: CommentActionType[]): void => {
+                      if (actions && actions.length > 0) {
+                        this.userActions = actions;
+                      }
+                    });
+                }
+              });
+          });
 
-      this.articleServices.getRelatedArticles(url)
-        .subscribe((data: ArticleType[]) => {
-          this.articles = data;
-        });
-    });
+        this.articleServices.getRelatedArticles(url)
+          .subscribe((data: ArticleType[]): void => {
+            this.articles = data;
+          });
+      });
   }
 
   ngOnDestroy(): void {
@@ -114,7 +116,7 @@ export class ReadingComponent implements OnInit, OnDestroy {
           if (!data.error) {
             const comment = this.article.comments!.find(c => c.id === commentId);
             if (comment) {
-              const existingActionIndex = this.userActions.findIndex(a => a.comment === commentId);
+              const existingActionIndex: number = this.userActions.findIndex(a => a.comment === commentId);
               const previousAction = existingActionIndex > -1 ? this.userActions[existingActionIndex].action : null;
 
 
@@ -147,20 +149,20 @@ export class ReadingComponent implements OnInit, OnDestroy {
     if (this.article && this.article.comments && this.article.comments.length < this.allCount) {
       this.isCommentsLoading = true;
 
-      const offset = this.article.comments.length;
+      const offset: number = this.article.comments.length;
 
       this.commentService.getComments(this.article.id, offset)
-        // .pipe(
-        //   delay(2000) //задержка для тестирования лоадера
-        // )
+        .pipe(
+          delay(2000) //задержка для тестирования лоадера
+        )
         .subscribe({
-          next: (commentData: CommentType) => {
+          next: (commentData: CommentType): void => {
             const existingComments = this.article.comments || [];
             this.article.comments = [...existingComments, ...commentData.comments];
             this.allCount = commentData.allCount;
             this.isCommentsLoading = false;
           },
-          error: () => {
+          error: (): void => {
             this.isCommentsLoading = false;
           }
         });
@@ -170,12 +172,12 @@ export class ReadingComponent implements OnInit, OnDestroy {
   sendViolation(commentId: string): void {
     this.commentService.applyAction(commentId, 'violate')
       .subscribe({
-        next: (data: DefaultResponseType) => {
+        next: (data: DefaultResponseType): void => {
           if (data && !data.error) {
             this._snackBar.open('Жалоба отправлена', undefined, {duration: 3000});
           }
         },
-        error: (errorResponse) => {
+        error: (errorResponse: any): void => {
           if (errorResponse.status === 400) {
             this._snackBar.open('Жалоба уже отправлена', undefined, {duration: 3000});
           } else {
@@ -187,7 +189,7 @@ export class ReadingComponent implements OnInit, OnDestroy {
 
   private loadComments(): void {
     this.commentService.getComments(this.article.id)
-      .subscribe((commentData: CommentType) => {
+      .subscribe((commentData: CommentType): void => {
         if (commentData.comments) {
           this.article.comments = commentData.comments.slice(0, this.initialCommentsCount);
         }

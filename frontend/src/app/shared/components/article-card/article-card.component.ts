@@ -9,24 +9,24 @@ import {environment} from "../../../../environments/environment";
 })
 export class ArticleCardComponent implements OnInit {
   @Input() article!: ArticleType;
-  isDescriptionExpanded = false;
-  descriptionLimit = 220;
+  isDescriptionExpanded: boolean = false;
+  descriptionLimit: number = 220;
+  serverStaticPath: string = environment.serverStaticPath;
 
-  serverStaticPath = environment.serverStaticPath;
-
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() {
   }
 
   get truncatedDescription(): string {
-    const desc = this.article?.description;
+    const desc: string = this.article?.description;
     if (!desc) return '';
 
     if (this.isDescriptionExpanded || desc.length <= this.descriptionLimit) {
       return desc;
     }
     return desc.substring(0, this.descriptionLimit);
+  }
+
+  ngOnInit(): void {
   }
 
   shouldShowToggle(): boolean {

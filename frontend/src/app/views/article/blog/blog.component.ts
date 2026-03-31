@@ -1,4 +1,4 @@
-import {Component, OnInit, ElementRef, HostListener} from "@angular/core";
+import {Component, ElementRef, HostListener, OnInit} from "@angular/core";
 import {CategoryType} from "../../../../types/category.type";
 import {CategoryService} from "../../../shared/services/category.service";
 import {ArticleService} from "../../../shared/services/article.service";
@@ -27,40 +27,33 @@ export class BlogComponent implements OnInit {
   }
 
   @HostListener('document:click', ['$event'])
-  onClick(event: MouseEvent) {
-    // Проверяем, нажал ли пользователь на само меню или внутрь него
+  onClick(event: MouseEvent): void {
     const clickedInside = this.el.nativeElement.querySelector('.blog-sorting').contains(event.target);
-
     if (!clickedInside && this.isSortingOpen) {
       this.isSortingOpen = false;
     }
   }
 
   ngOnInit(): void {
-
     this.categoryService.getCategories()
-      .subscribe((categories) => {
+      .subscribe((categories: CategoryType[]): void => {
         this.categories = categories;
       });
-
     this.loadArticles();
   }
 
   loadArticles(): void {
     const categoryUrls = this.selectedCategories.map(cat => cat.url);
-
     this.articleService.getArticles(this.currentPage, categoryUrls)
       .subscribe({
-        next: (data) => {
+        next: (data): void => {
           this.pages = [];
           this.totalPages = data.pages;
-
           for (let i = 1; i <= data.pages; i++) {
             this.pages.push(i);
           }
           this.articles = data.items;
-
-        },
+        }
       });
   }
 
@@ -68,20 +61,18 @@ export class BlogComponent implements OnInit {
     this.isSortingOpen = !this.isSortingOpen;
   }
 
-  toggleCategory(category: CategoryType) {
-    const index = this.selectedCategories.findIndex(c => c.id === category.id);
-
+  toggleCategory(category: CategoryType): void {
+    const index: number = this.selectedCategories.findIndex(c => c.id === category.id);
     if (index > -1) {
       this.selectedCategories.splice(index, 1);
     } else {
       this.selectedCategories.push(category);
     }
-
     this.currentPage = 1;
     this.loadArticles();
   }
 
-  removeCategory(category: CategoryType) {
+  removeCategory(category: CategoryType): void {
     this.selectedCategories = this.selectedCategories.filter(c => c.id !== category.id);
     this.currentPage = 1;
     this.loadArticles();

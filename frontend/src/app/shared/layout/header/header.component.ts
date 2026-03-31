@@ -1,8 +1,8 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from "../../../core/auth/auth.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {Router, NavigationEnd} from "@angular/router";
+import {NavigationEnd, Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
 import {filter} from "rxjs/operators";
 import {Subscription} from "rxjs";
@@ -28,12 +28,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.authService.isLogged$.subscribe(isLoggedIn => {
-      this.isLogged = isLoggedIn;
-      if (isLoggedIn) {
-        this.getUserInfo();
-      }
-    });
+    this.authService.isLogged$
+      .subscribe(isLoggedIn => {
+        this.isLogged = isLoggedIn;
+        if (isLoggedIn) {
+          this.getUserInfo();
+        }
+      });
 
     if (this.isLogged) {
       this.getUserInfo();
@@ -42,11 +43,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.router.events.pipe(
         filter(event => event instanceof NavigationEnd)
-      ).subscribe(() => {
-        this.updateActiveFragment();
-      })
+      )
+        .subscribe((): void => {
+          this.updateActiveFragment();
+        })
     );
-
     this.updateActiveFragment();
   }
 
@@ -62,10 +63,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   getUserInfo(): void {
     this.userService.getUserInfo()
       .subscribe({
-        next: (data) => {
+        next: (data): void => {
           this.userName = data.name;
         },
-        error: () => {
+        error: (): void => {
           this.snackBar.open('Ошибка получения данных пользователя');
         }
       });
@@ -74,10 +75,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   logout(): void {
     this.authService.logout()
       .subscribe({
-        next: () => {
+        next: (): void => {
           this.doLogout()
         },
-        error: (errorResponse: HttpErrorResponse) => {
+        error: (errorResponse: HttpErrorResponse): void => {
           this.doLogout()
         }
       });

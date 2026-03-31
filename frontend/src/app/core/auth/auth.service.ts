@@ -5,28 +5,18 @@ import {environment} from "../../../environments/environment";
 import {LoginResponseType} from "../../../types/login-response.type";
 import {DefaultResponseType} from "../../../types/default-response.type";
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
   public accessTokenKey: string = 'accessToken';
   public refreshTokenKey: string = 'refreshToken';
   public userIdKey: string = 'userId';
-
   public isLogged$: Subject<boolean> = new Subject<boolean>();
   private isLogged: boolean = false;
 
-  private id: string | undefined;
-
-
   constructor(private http: HttpClient) {
     this.isLogged = !!localStorage.getItem(this.accessTokenKey);
-  }
-
-  get userId(): null | string {
-    return localStorage.getItem(this.userIdKey);
   }
 
   set userId(value: null | string) {
@@ -57,7 +47,7 @@ export class AuthService {
         refreshToken: tokens.refreshToken
       })
     }
-    throw throwError(() => 'can not find token');
+    throw throwError((): string => 'can not find token');
   };
 
 

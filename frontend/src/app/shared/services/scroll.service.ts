@@ -1,7 +1,7 @@
-import { Injectable, Inject } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { DOCUMENT } from '@angular/common';
-import { filter } from 'rxjs/operators';
+import {Inject, Injectable} from '@angular/core';
+import {NavigationEnd, Router} from '@angular/router';
+import {DOCUMENT} from '@angular/common';
+import {filter} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +13,11 @@ export class ScrollService {
   ) {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => {
-        const fragment = this.router.parseUrl(this.router.url).fragment;
+      .subscribe((): void => {
+        const fragment: string | null = this.router.parseUrl(this.router.url).fragment;
         if (fragment) {
-          setTimeout(() => {
-            const element = this.document.getElementById(fragment);
+          setTimeout((): void => {
+            const element: HTMLElement | null = this.document.getElementById(fragment);
             if (element) {
               element.scrollIntoView({
                 behavior: 'smooth',

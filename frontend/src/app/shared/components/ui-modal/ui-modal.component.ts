@@ -9,12 +9,11 @@ export class UiModalComponent {
   @ViewChild('modalElement') modal!: ElementRef<HTMLDialogElement>;
   @Output() onClosed = new EventEmitter<void>();
 
-  open() {
+  open(): void {
     this.modal.nativeElement.showModal();
-    // document.body.style.overflow = 'hidden';
   }
 
-  close() {
+  close(): void {
     this.modal.nativeElement.close();
     document.body.style.overflow = 'auto';
     this.onClosed.emit();

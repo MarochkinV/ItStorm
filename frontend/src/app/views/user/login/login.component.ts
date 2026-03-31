@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid && this.loginForm.value.email && this.loginForm.value.password) {
       this.authService.login(this.loginForm.value.email, this.loginForm.value.password, !!this.loginForm.value.rememberMe)
         .subscribe({
-          next: (data: LoginResponseType | DefaultResponseType) => {
+          next: (data: LoginResponseType | DefaultResponseType): void => {
             let error = null;
 
             if ((data as DefaultResponseType).error !== undefined) {
@@ -69,6 +69,4 @@ export class LoginComponent implements OnInit {
         });
     }
   }
-
-
 }
